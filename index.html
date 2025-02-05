@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Întrebare Specială</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .bear-img {
+            width: 150px;
+        }
+        .question {
+            font-size: 24px;
+            margin: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .yes-btn {
+            background-color: green;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .no-btn {
+            background-color: red;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="bear.png" alt="Bear" class="bear-img">
+        <div class="question">Bea, vrei să ieșim?</div>
+        <div class="buttons">
+            <button class="yes-btn" onclick="accept()">Da</button>
+            <button class="no-btn" onclick="decline()">Nu</button>
+        </div>
+        <div id="final" class="hidden">
+            <img src="bears-kiss.png" alt="Happy Bears" class="bear-img">
+            <div class="question">Yay! 💕</div>
+        </div>
+    </div>
+
+    <script>
+        let noCount = 0;
+        function decline() {
+            const messages = [
+                "Ești sigură? 😢",
+                "Gândește-te mai bine! 🥺",
+                "Hai, măcar o șansă! 🙏",
+                "Promit că o să fie frumos! ❤️"
+            ];
+            alert(messages[Math.min(noCount, messages.length - 1)]);
+            noCount++;
+            document.querySelector('.yes-btn').style.transform = `scale(${1 + noCount * 0.2})`;
+        }
+        function accept() {
+            document.querySelector('.container').innerHTML = document.getElementById('final').innerHTML;
+        }
+    </script>
+</body>
+</html>
